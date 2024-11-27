@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Importa CommonModule
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // Importa FormsModule para ngModel
+import { ApiService } from '../../services/api.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-audio',
+  standalone: true,
+  imports: [HttpClientModule, CommonModule, RouterModule, FormsModule],
   templateUrl: './audio.component.html',
-  styleUrls: ['./audio.component.css']
+  styleUrls: ['./audio.component.css'],
+  
 })
 export class AudioComponent {
   private mediaRecorder: MediaRecorder | null = null;

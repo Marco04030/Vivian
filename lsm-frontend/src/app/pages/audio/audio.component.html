@@ -1,14 +1,12 @@
 <div class="container">
-  <button routerLink="/" class="btn btn-back">Regresar</button>
-  <h1>VIVIAN</h1>
-  <img src="assets/avatar-placeholder.png" alt="Avatar" class="avatar" />
-  <div class="controls">
-    <button 
-      class="btn btn-primary" 
-      (click)="isRecording ? stopRecording() : startRecording()">
+    <button routerLink="/" class="btn btn-back">Regresar</button>
+    <h1>VIVIAN</h1>
+    <img src="assets/avatar-placeholder.png" alt="Avatar" class="avatar" />
+    <div class="controls">
+        <button class="btn btn-primary" (click)="isRecording ? stopRecording() : startRecording()">
       {{ isRecording ? 'Detener' : 'Grabar' }} 
       <i [class]="isRecording ? 'fas fa-stop' : 'fas fa-microphone'"></i>
     </button>
-    <textarea placeholder="Texto transcrito aquí..." disabled></textarea>
-  </div>
+        <textarea placeholder="Texto transcrito aquí..." disabled></textarea>
+    </div>
 </div>
