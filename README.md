@@ -11,13 +11,11 @@ selección entre *input* de audio o texto, para que luego el avatar realice
 la traducción a LSM.
 
 
-**Página de audio**
+## Página de audio
 
-La página reservada al audio permite hacer una grabación corta de voz, la 
-cual posteriormente se transcribe en pantalla, para que después el avatar
-genere las señas y gestos correspondientes en LSM.
+La página reservada al audio permite hacer una grabación corta de voz, la cual posteriormente se transcribe en pantalla, para que después el avatar genere las señas y gestos correspondientes en LSM.
 
-**Página de texto**
+## Página de texto
 
 La página reservada al texto permite escribir en una caja de texto, para que 
 después el avatar realice la traducción correspondiente en LSM.
