@@ -3,13 +3,16 @@
   <button routerLink="/" class="btn btn-back">Regresar</button>
   <h1>VIVIAN</h1>
   <img src="assets/avatar-placeholder.png" alt="Avatar" class="avatar" />
-  <div class="controls">
-    <textarea [(ngModel)]="inputText" placeholder="Escribe texto aquí..."></textarea>
-    <div class="buttons">
-      <button (click)="clearText()" class="btn btn-secondary">Borrar <i class="fas fa-trash"></i></button>
-      <button (click)="sendText()" class="btn btn-primary">Enviar</button>
-    </div>
+  <div>
+    <h1>Procesar Texto a Señas</h1>
+    <textarea [(ngModel)]="inputText" placeholder="Escribe algo aquí"></textarea>
+    <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+    <button (click)="sendText()">Enviar</button>
+    <button (click)="clearText()">Limpiar</button>
   </div>
-  <!-- Aquí se mostrará el resultado -->
-  <p *ngIf="result">Resultado: {{ result }}</p>
-</div>
+  
+  <div *ngIf="result">
+    <h2>Resultado:</h2>
+    <p>{{ result }}</p>
+  </div>
+  

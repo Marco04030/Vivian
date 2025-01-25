@@ -19,25 +19,50 @@ export class WriteComponent {
 
   constructor(private apiService: ApiService) {}
 
+  errorMessage = ''; // Variable para almacenar errores
   sendText() {
-    if (!this.inputText.trim()) {
-      alert('Por favor, escribe algún texto antes de enviar.');
-      return;
-    }
+    this.errorMessage = '';
+    // Elimina espacios adicionales
+    this.inputText = this.inputText.trim().replace(/\s+/g, ' ');
+
+  // Validar si el texto está vacío
+  if (!this.inputText) {
+    alert('Por favor, escribe algún texto antes de enviar.');
+    return;
+  }
+
+  // Validar tamaño mínimo y máximo
+  if (this.inputText.length < 1) {
+    alert('El texto debe contener al menos un carácter.');
+    return;
+  }
+
+  if (this.inputText.length > 200) { // Ajusta el límite máximo según necesidades
+    alert('El texto no puede contener más de 200 caracteres.');
+    return;
+  }
+
+  // Validar caracteres permitidos (letras, espacios y signos comunes)
+  const regex = /^[A-Za-zÑñ0-9.,!?¿¡:;()\s]+$/;
+  if (!regex.test(this.inputText)) {
+    alert('El texto solo puede contener letras, números, espacios y signos de puntuación comunes.');
+    return;
+  }
   
+    // Si pasa todas las validaciones, envía el texto al backend
     this.apiService.textToSign(this.inputText).subscribe(
       (response) => {
-        // Procesar la respuesta
         this.result = response.animations
           .map((animation: any) => animation.letter)
-          .join(' '); // Deletrea la palabra con un espacio entre letras
+          .join(' '); // Muestra el resultado como letras separadas
       },
       (error) => {
         console.error('Error al procesar el texto:', error);
-        this.result = 'Hubo un error al procesar el texto.';
+        this.errorMessage = 'Hubo un error al procesar el texto.';
       }
     );
   }
+  
   
 
   clearText() {
