@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule para ngModel
 import { ApiService } from '../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProcessTextService } from '../../services/process-text.service';
+
 @Component({
   selector: 'app-write',
   standalone: true,
@@ -22,10 +24,13 @@ export class WriteComponent {
       alert('Por favor, escribe algún texto antes de enviar.');
       return;
     }
-
+  
     this.apiService.textToSign(this.inputText).subscribe(
       (response) => {
-        this.result = response.signs; // Asigna la respuesta al resultado
+        // Procesar la respuesta
+        this.result = response.animations
+          .map((animation: any) => animation.letter)
+          .join(' '); // Deletrea la palabra con un espacio entre letras
       },
       (error) => {
         console.error('Error al procesar el texto:', error);
@@ -33,6 +38,7 @@ export class WriteComponent {
       }
     );
   }
+  
 
   clearText() {
     this.inputText = '';
